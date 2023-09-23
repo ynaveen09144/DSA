@@ -19,6 +19,7 @@ function SelectionSort(arr){
 function BubleSort(arr){
     for(let i = arr.length-1; i >= 1; i--)
     {
+        let didSwap = 0
         for(let j = 0; j <= i-1; j++)
         {
             if(arr[j] > arr[j+1])
@@ -29,7 +30,8 @@ function BubleSort(arr){
             }
             
         }
-        
+        if(didSwap == 0)
+            break;
     }
     return arr
 }
