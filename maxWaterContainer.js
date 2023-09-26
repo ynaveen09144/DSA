@@ -1,17 +1,17 @@
 //Brute Force Solution
 
 function maxWaterContainer(arr) {
-  let target = 11
+  maxArea = 0
     for(let i = 0; i < arr.length; i++) {
-        let numToFind = target - arr[i]
         for(let j = i+1; j < arr.length; j++) {
-            if(arr[j] == numToFind) {
-                return [i, j]
-            }
+          const height =  Math.min(arr[i],arr[j])
+          const width = j - i
+          const area = height * width
+          maxArea =  Math.max(maxArea, area)
         }
     }
-    return null
+    return maxArea
 }
 
-const arr = [3,5,9,3,2]
+const arr = [7, 1, 2, 3, 9]
 console.log(maxWaterContainer(arr))
