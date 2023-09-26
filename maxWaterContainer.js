@@ -25,8 +25,9 @@ function maxWaterContainer(arr) {
     maxArea = Math.max(maxArea, area)
     if(arr[p1] <= arr[p2]){
       p1++
-    }
+    } else{
     p2--
+    }
   }
   return maxArea
 }
