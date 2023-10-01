@@ -20,5 +20,25 @@ function logestSubString(arr) {
     return longest
 }
 
+///Optimal
+function LongestSubstring(arr) {
+    const seen = {};
+    let longest = 0, left = 0;
+    
+    if(arr.length <= 1) return arr.length;
+ 
+    for(let right = 0; right < arr.length; right++) {
+        const currentChar = arr[right];
+        const prevSeenChar = seen[currentChar];
+        
+        if(prevSeenChar >= left) {
+            left = prevSeenChar + 1;
+        }
+        seen[currentChar] = right;
+        longest = Math.max(longest, right - left + 1);
+    }
+    return longest
+};
+
 const arr = "abccabbcde"
 console.log(logestSubString(arr))
