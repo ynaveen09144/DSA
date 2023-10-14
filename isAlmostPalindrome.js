@@ -20,6 +20,7 @@ const isAlmostPalindrome = function(s) {
         left++;
         right--;
     }
+    return true
 }
 
 
