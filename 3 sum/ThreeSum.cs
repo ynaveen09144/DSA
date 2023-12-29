@@ -71,3 +71,61 @@ public class MainProgram
         }
     }
 }
+
+
+//Optimal
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        var test1 = ThreeSum(new int[] { -1, 0, 1, 2, -1, -4 });
+        Console.WriteLine("Test1: " + String.Join(", ", test1.Select(x => $"[{String.Join(", ", x)}]")));
+    }
+
+    public static IList<IList<int>> ThreeSum(int[] nums)
+    {
+        Array.Sort(nums);
+        List<IList<int>> triplets = new List<IList<int>>();
+
+        for (int i = 0; i < nums.Length - 2; i++)
+        {
+            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) 
+            {
+                int p1 = i + 1, p2 = nums.Length - 1, sum = -nums[i];
+                while (p1 < p2)
+                {
+                    int currentSum = nums[p1] + nums[p2];
+                    if (currentSum == sum)
+                    {
+                        triplets.Add(new List<int> { nums[i], nums[p1], nums[p2] });
+
+                        while (p1 < p2 && nums[p1] == nums[p1 + 1])
+                        {
+                            p1++;
+                        }
+                        while (p1 < p2 && nums[p2] == nums[p2 - 1])
+                        {
+                            p2--;
+                        }
+                        p1++;
+                        p2--;
+                    }
+                    else if (currentSum < sum)
+                    {
+                        p1++;
+                    }
+                    else
+                    {
+                        p2--;
+                    }
+                }
+            }
+        }
+        return triplets;
+    }
+}
