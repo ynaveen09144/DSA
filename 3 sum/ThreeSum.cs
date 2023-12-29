@@ -79,14 +79,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class HelloWorld
+public class ThreeSumSolution
 {
-    public static void Main(string[] args)
-    {
-        var test1 = ThreeSum(new int[] { -1, 0, 1, 2, -1, -4 });
-        Console.WriteLine("Test1: " + String.Join(", ", test1.Select(x => $"[{String.Join(", ", x)}]")));
-    }
-
     public static IList<IList<int>> ThreeSum(int[] nums)
     {
         Array.Sort(nums);
@@ -94,38 +88,49 @@ public class HelloWorld
 
         for (int i = 0; i < nums.Length - 2; i++)
         {
-            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) 
+            if (i == 0 || (i > 0 && nums[i] != nums[i - 1]))
             {
-                int p1 = i + 1, p2 = nums.Length - 1, sum = -nums[i];
-                while (p1 < p2)
+                int left = i + 1, right = nums.Length - 1, sum = -nums[i];
+
+                while (left < right)
                 {
-                    int currentSum = nums[p1] + nums[p2];
+                    int currentSum = nums[left] + nums[right];
+
                     if (currentSum == sum)
                     {
-                        triplets.Add(new List<int> { nums[i], nums[p1], nums[p2] });
+                        triplets.Add(new List<int> { nums[i], nums[left], nums[right] });
 
-                        while (p1 < p2 && nums[p1] == nums[p1 + 1])
-                        {
-                            p1++;
-                        }
-                        while (p1 < p2 && nums[p2] == nums[p2 - 1])
-                        {
-                            p2--;
-                        }
-                        p1++;
-                        p2--;
+                        while (left < right && nums[left] == nums[left + 1])
+                            left++;
+                        while (left < right && nums[right] == nums[right - 1])
+                            right--;
+
+                        left++;
+                        right--;
                     }
                     else if (currentSum < sum)
                     {
-                        p1++;
+                        left++;
                     }
                     else
                     {
-                        p2--;
+                        right--;
                     }
                 }
             }
         }
+
         return triplets;
+    }
+
+    public static void Main()
+    {
+        var test1 = ThreeSum(new int[] { -1, 0, 1, 2, -1, -4 });
+        var test2 = ThreeSum(new int[] { 0, 1, 1 });
+        var test3 = ThreeSum(new int[] { 0, 0, 0 });
+
+        Console.WriteLine("Test1: " + String.Join(", ", test1.Select(x => $"[{String.Join(", ", x)}]")));
+        Console.WriteLine("Test2: " + String.Join(", ", test2.Select(x => $"[{String.Join(", ", x)}]")));
+        Console.WriteLine("Test3: " + String.Join(", ", test3.Select(x => $"[{String.Join(", ", x)}]")));
     }
 }
