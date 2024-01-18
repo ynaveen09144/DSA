@@ -33,7 +33,7 @@ class Program
         {
             for(int j = 0; j < cols; j++)
             {
-                if(matrix[i][j] == 0) // Fix: Use matrix[i][j] for jagged array
+                if(matrix[i][j] == 0) 
                 {
                     zeroRows[i] = true;
                     zeroCols[j] = true;
@@ -48,7 +48,7 @@ class Program
             {
                 for(int j = 0; j < cols; j++)
                 {
-                    matrix[i][j] = 0; // Fix: Use matrix[i][j] for jagged array
+                    matrix[i][j] = 0; 
                 }
             }
         }
@@ -60,7 +60,7 @@ class Program
             {
                 for(int i = 0; i < rows; i++)
                 {
-                    matrix[i][j] = 0; // Fix: Use matrix[i][j] for jagged array
+                    matrix[i][j] = 0; 
                 }
             }
         }
