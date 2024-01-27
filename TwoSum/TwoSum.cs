@@ -48,7 +48,7 @@ public class HelloWorld
         Dictionary<int, int> numIndices = new Dictionary<int, int>();
         
         for(int i = 0; i < nums.Length; i++){
-            int diff = nums[i] - target;
+            int diff = target - nums[i];
             if(numIndices.ContainsKey(diff))
             {
                 return new int[] {numIndices[diff], i};
