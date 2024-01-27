@@ -94,3 +94,48 @@ public class Solution {
         // Output will be [0, 0, 9, 0, 0] for the given input [-1, 1, 0, -3, 3]
     }
 }
+
+
+// Optimal new solution
+
+using System;
+
+class Program
+{
+    public static int[] ProductExceptSelf(int[] nums)
+    {
+        int n = nums.Length;
+        int[] output = new int[n];
+
+        // Calculate the product of elements to the left of each element
+        int[] leftProducts = new int[n];
+        leftProducts[0] = 1;
+        for (int i = 1; i < n; i++)
+        {
+            leftProducts[i] = leftProducts[i - 1] * nums[i - 1];
+        }
+
+        // Calculate the product of elements to the right of each element
+        int rightProduct = 1;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            output[i] = leftProducts[i] * rightProduct;
+            rightProduct *= nums[i];
+        }
+
+        return output;
+    }
+
+    static void Main(string[] args)
+    {
+        int[] nums = { 1, 2, 3, 4 };
+        int[] result = ProductExceptSelf(nums);
+
+        Console.WriteLine("Resulting array:");
+        foreach (int num in result)
+        {
+            Console.Write(num + " ");
+        }
+    }
+}
+
