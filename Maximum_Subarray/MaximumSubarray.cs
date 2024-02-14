@@ -30,3 +30,31 @@ class MaximumSubarray
         Console.WriteLine("Maximum subarray sum is " + maxSum);
     }
 }
+
+
+// Optimized solution
+
+
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        int[] arr = { -2,1,-3,4,-1,2,1,-5,4 };
+        int maxSum = MaxSubArraySum(arr);
+        Console.WriteLine("Maximum subarray sum is " + maxSum);
+    }
+    static int MaxSubArraySum(int[] nums)
+    {
+        int n = nums.Length;
+        int maxSum = nums[0];
+        
+        for(int i = 1; i < n; i++)
+        {
+            nums[i] = Math.Max(0, nums[i - 1]) + nums[i];
+            maxSum = Math.Max(maxSum, nums[i]);
+        }
+        return maxSum;
+    }
+}
