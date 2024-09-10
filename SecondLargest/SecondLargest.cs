@@ -1,3 +1,5 @@
+//Brute
+
 using System;
 
 public class Program
@@ -42,3 +44,43 @@ public class Program
         return secLargest;
     }
 }
+
+//Optimal
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] arr = { 8, 8, 7, 6, 5 };
+        int secondLargest = FindSecondLargestElement(arr);
+        Console.WriteLine("The second largest element is: " + secondLargest);
+    }
+
+    static int FindSecondLargestElement(int[] arr)
+    {
+        int n = arr.Length;
+        
+        if (n < 2) return -1; 
+        
+        int largest = int.MinValue;
+        int secondLargest = int.MinValue;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] > largest)
+            {
+                secondLargest = largest; 
+                largest = arr[i];
+            }
+            else if (arr[i] > secondLargest && arr[i] != largest)
+            {
+                secondLargest = arr[i];
+            }
+        }
+
+        return secondLargest == int.MinValue ? -1 : secondLargest; 
+    }
+}
+
