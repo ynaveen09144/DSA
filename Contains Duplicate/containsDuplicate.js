@@ -32,3 +32,13 @@ const test3 = containsDuplicate([1,1,1,3,3,4,3,2,4,2])
 console.log(test1)
 console.log(test2)
 console.log(test3)
+
+////
+
+const numbers = [1, 2, 3, 1, 2, 4, 5, 5, 6];
+
+// Remove duplicates using Set
+const distinctNumbers = [...new Set(numbers)];
+
+console.log("Numbers after removing duplicates:");
+console.log(distinctNumbers);
